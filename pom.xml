@@ -8,6 +8,13 @@
   <name>HelloWorld</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+    <plugin>
+  <artifactId>maven-war-plugin</artifactId>
+  <version>2.6</version>
+  <configuration>
+    <failOnMissingWebXml>false</failOnMissingWebXml>
+  </configuration>
+  </plugin>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
