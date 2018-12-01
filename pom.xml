@@ -17,7 +17,7 @@
          </configuration>
      </plugin>
     </plugins>
-    </builds>
+    </build>
   <dependencies>
       <dependency>
       <groupId>junit</groupId>
