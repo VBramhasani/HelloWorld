@@ -1,29 +1,13 @@
-pipeline{
-	aget {
-		label 'WinAgent'
-	tools { 
-        maven 'MAVEN_HOME' 
-        jdk 'JAVA_Home'
-		Git 'Default'
-		}
-	}
-	
-	stages{
-		stage('Compile stage'){
-			steps{
-			sh 'mvn compile'
-			}
-		}
-		stage(Maven Test){
-			steps{
-			sh "mvn test"
-			}
-		}
-		stage('deploy') {
-			steps {
-			sh "mvn deploy"
-				}
-			}
-		
-	}
+pipeline {
+    agent any
+    tools {
+        maven '$MAVEN_HOME' 
+    }
+    stages {
+        stage('Example') {
+            steps {
+                sh 'mvn --version'
+            }
+        }
+    }
 }
