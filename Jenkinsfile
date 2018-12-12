@@ -17,7 +17,23 @@ pipeline{
 			steps {
 				bat "mvn package"
 				}
+		}
+		stage('upload Artifactory'){
+			steps{
+			nexusVersion: 'nexus2',
+			protocol: 'http',
+			nexusUrl: 'http://localhost:8081/nexus/content/repositories/Myrepo/',
+			groupId: 'my.company',
+			version: 1.0,
+			repository: 'releases',
+			credentialsId: 'Nexuscredentials',
+			artifacts: [
+			[artifactId: HelloWorld,
+			classifier: '',
+			file: 'HelloWorld-' + 1.0 + '.jar',
+			type: 'jar']]
+			
 			}
-		
+		}
 	}
 }
