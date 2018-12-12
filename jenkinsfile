@@ -1,0 +1,24 @@
+pipeline{
+	aget {
+		label 'WinAgent'
+	}
+	stages{
+		stage(SCM Checkout){
+			stpes{
+			sh "rm -rf -f HelloWorld"
+			sh "git clone https://github.com/VBramhasani/HelloWorld.git"
+			}
+		}
+		stage(Maven build){
+			steps{
+			sh "mvn clean install package"
+			}
+		}
+		stage('deploy') {
+			steps {
+			sh "mvn package -f HelloWorld"
+				}
+			}
+		
+	}
+}
