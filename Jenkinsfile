@@ -1,13 +1,10 @@
 pipeline {
-    agent any
-    tools {
-        maven '$MAVEN_HOME' 
-    }
-    stages {
-        stage('Example') {
-            steps {
-                sh 'mvn --version'
-            }
-        }
+    node('WinAgent') {
+    stage('scm checkout'){
+		git 'https://github.com/VBramhasani/HelloWorld.git'
+	}
+	stage('compile-package'){
+		sh 'mvn clean package'
+	}
     }
 }
