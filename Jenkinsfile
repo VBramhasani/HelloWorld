@@ -1,10 +1,23 @@
-pipeline {
-    node('WinAgent') {
-    stage('scm checkout'){
-		git 'https://github.com/VBramhasani/HelloWorld.git'
+pipeline{
+	agentt {
+		label 'WinAgent'
+	}	
+	stages{
+		stage('Clean'){
+			steps{
+				sh 'mvn clean'
+			}
+		}
+		stage(Maven Test){
+			steps{
+				sh "mvn test"
+			}
+		}
+		stage('package') {
+			steps {
+				sh "mvn package"
+				}
+			}
+		
 	}
-	stage('compile-package'){
-		sh 'mvn clean package'
-	}
-    }
 }
