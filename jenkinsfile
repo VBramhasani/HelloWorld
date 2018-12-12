@@ -4,25 +4,24 @@ pipeline{
 	tools { 
         maven 'MAVEN_HOME' 
         jdk 'JAVA_Home'
-		Git 'default'
+		Git 'Default'
 		}
 	}
 	
 	stages{
-		stage(SCM Checkout){
-			stpes{
-			sh "rm -rf -f HelloWorld"
-			sh "git clone https://github.com/VBramhasani/HelloWorld.git"
+		stage('Compile stage'){
+			steps{
+			sh 'mvn compile'
 			}
 		}
-		stage(Maven build){
+		stage(Maven Test){
 			steps{
-			sh "mvn clean install package"
+			sh "mvn test"
 			}
 		}
 		stage('deploy') {
 			steps {
-			sh "mvn package -f HelloWorld"
+			sh "mvn deploy"
 				}
 			}
 		
