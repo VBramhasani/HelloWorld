@@ -1,5 +1,5 @@
 pipeline{
-	agentt {
+	agent {
 		label 'WinAgent'
 	}	
 	stages{
