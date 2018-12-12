@@ -20,7 +20,7 @@ pipeline{
 		}
 		stage('upload Artifactory'){
 			steps{
-			nexusVersion: 'nexus2',
+			nexusVersion: 'nexus 2',
 			protocol: 'http',
 			nexusUrl: 'http://localhost:8081/nexus/content/repositories/Myrepo/',
 			groupId: 'my.company',
