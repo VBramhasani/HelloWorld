@@ -30,7 +30,7 @@ pipeline{
 				credentialsId: 'Nexus credentials',
 				artifacts: [
 					[artifactId: HelloWorld
-					 file: 'HelloWorld-1.0.jar',
+					 file: 'target/HelloWorld-1.0.jar',
 					 type: 'jar'] ] )
 			
 			}
