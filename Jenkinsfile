@@ -30,9 +30,11 @@ pipeline{
 				credentialsId: 'Nexus credentials',
 				artifacts: [
 					[artifactId: HelloWorld
-					 classifier: '',
+					 classifier: 'debug',
 					 file: 'elloWorld-1.0.jar',
-					 type: 'jar'] ] )
+					 type: 'jar']
+    ]
+ )
 			
 			}
 		}
