@@ -1,39 +1,17 @@
 pipeline{
-	agent {
-		label 'WinAgent'
-	}	
-	stages{
-		stage('Clean'){
-			steps{
-				bat 'mvn clean'
-			}
+	agent{
+		label: WinAgent
 		}
-		stage('Test'){
-			steps{
-				bat "mvn test"
-			}
+	Stages{
+		stage('SCM Checkout'){
+			git 'https://github.com/VBramhasani/HelloWorld.git'
 		}
-		stage('package') {
-			steps {
-				bat "mvn package"
-				}
-		}
-		stage('upload Artifactory'){
-			steps{
-			nexusArtifactUploader(
-				nexusVersion: 'nexus2',
-				protocol: 'http',
-				nexusUrl: 'http://localhost:8081/nexus/content/repositories/Myrepo/',
-				groupId: 'my.company',
-				version: 1.0,
-				repository: 'releases',
-				credentialsId: 'Nexus credentials',
-				artifacts: [
-					[artifactId: HelloWorld
-					 file: '$target/**/*.jar',
-					 type: 'jar'] ] )
-			
-			}
+		stage('build'){
+			sh 'mvn clean package'
 		}
 	}
-}
+	post {
+        always {
+            archiveArtifacts '**/*.jar'
+        }
+	}
