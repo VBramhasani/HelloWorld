@@ -14,4 +14,5 @@ pipeline{
         always {
             archiveArtifacts '**/*.jar'
         }
+		}
 	}
